@@ -15,7 +15,7 @@ async function querry(sql){
     //     }
     // };
     var conn = new mssql.ConnectionPool(
-        'server=34.29.94.142,8080;database=myshop;user id=sqlserver;password=nokia123;Trusted_Connection=True;TrustServerCertificate=True;');
+        'server=34.29.94.142,1433;database=myshop;user id=sqlserver;password=nokia123;Trusted_Connection=True;TrustServerCertificate=True;');
 
     try{
         await conn.connect();
