@@ -61,6 +61,7 @@ async function createTable(){
 }
 
 createTable();
+console.log("ASDASDASD")
 
 async function insert_product(name,description,imgLink,price){
     var sql = `INSERT INTO products (name, description, imgLink, price) VALUES ('${name}','${description}','${imgLink}','${price}')`;

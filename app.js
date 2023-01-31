@@ -26,8 +26,6 @@ app.set('views', './views');
 //w definicji obslugi sciezki wrzucamy middlewhare authorize i jesli on przepusci zadanie to req.user bedzie wypelniony wartoscia
 //jednoczesnie authorize jest straznikiem i jesli nie przepusci żądania, to pójdziemy do endpointa końcowego - login   
 
-createTable();
-
 app.get('/', async (req, res) => {
     let productsT;
     try {
