@@ -2,11 +2,11 @@ var mssql = require('mssql');
 //import * as mssql from 'mssql';
 
 conn = new mssql.ConnectionPool(
-    'server=localhost,1433;database=WEPPO;user id=weppo_sklep;password=weppo123;Trusted_Connection=True;TrustServerCertificate=True;');
+    'server=34.29.94.142,1433;database=itcc-shop;user id=sqlserver;password=nokia123;Trusted_Connection=True;TrustServerCertificate=True;');
 
 async function querry(sql){
     var conn = new mssql.ConnectionPool(
-        'server=localhost,1433;database=WEPPO;user id=weppo_sklep;password=weppo123;Trusted_Connection=True;TrustServerCertificate=True;');
+        'server=34.29.94.142,1433;database=itcc-shop;user id=sqlserver;password=nokia123;Trusted_Connection=True;TrustServerCertificate=True;');
 
     try{
         await conn.connect();
