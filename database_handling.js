@@ -32,6 +32,34 @@ async function querry(sql){
     }  
 }
 
+async function createTable(){
+    var sql = `USE [itcc-shop]
+    GO
+    
+    /****** Object:  Table [dbo].[products]    Script Date: 31.01.2023 19:04:33 ******/
+    SET ANSI_NULLS ON
+    GO
+    
+    SET QUOTED_IDENTIFIER ON
+    GO
+    
+    CREATE TABLE [dbo].[products](
+        [ID] [int] IDENTITY(1,1) NOT NULL,
+        [name] [varchar](64) NOT NULL,
+        [description] [varchar](255) NULL,
+        [imgLink] [varchar](255) NOT NULL,
+        [price] [int] NOT NULL,
+     CONSTRAINT [PK_products] PRIMARY KEY CLUSTERED 
+    (
+        [ID] ASC
+    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+    ) ON [PRIMARY]
+    GO
+    
+    `;
+    querry(sql); 
+}
+
 async function insert_product(name,description,imgLink,price){
     var sql = `INSERT INTO products (name, description, imgLink, price) VALUES ('${name}','${description}','${imgLink}','${price}')`;
     querry(sql); 
@@ -136,4 +164,4 @@ function result_select_users(){
 
 //export{update_product,update_user,delete_product_from_datebase,delete_product_from_datebase,insert_product,insert_user}
 module.exports = {insert_product,insert_user,update_user,update_product,delete_user_from_datebase,
-    delete_product_from_datebase,insert_order,select_products,select_users,pullProductsFromDB,pullUsersFromDB};
+    delete_product_from_datebase,insert_order,select_products,select_users,pullProductsFromDB,pullUsersFromDB, createTable};

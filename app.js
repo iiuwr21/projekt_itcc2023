@@ -21,8 +21,12 @@ app.use(cookieParser('sgs90890s8g90as8rg90as8g9r8a0srg8'));
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+
+
 //w definicji obslugi sciezki wrzucamy middlewhare authorize i jesli on przepusci zadanie to req.user bedzie wypelniony wartoscia
 //jednoczesnie authorize jest straznikiem i jesli nie przepusci żądania, to pójdziemy do endpointa końcowego - login   
+
+createTable();
 
 app.get('/', async (req, res) => {
     let productsT;
