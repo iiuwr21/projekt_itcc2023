@@ -1,20 +1,12 @@
 var mssql = require('mssql');
 //import * as mssql from 'mssql';
 
-// conn = new mssql.ConnectionPool(
-//     'server=34.29.94.142,1433;database=itcc-shop;user id=sqlserver;password=nokia123;Trusted_Connection=True;TrustServerCertificate=True;');
+conn = new mssql.ConnectionPool(
+    'server=34.29.94.142,1433;database=myshop;user id=sqlserver;password=nokia123;Trusted_Connection=True;TrustServerCertificate=True;');
 
 async function querry(sql){
-    const config = {
-        user: 'sqlserver',
-        password: 'nokia123',
-        server: '34.29.94.142',
-        database: 'myshop',
-        options: {           
-            encrypt: false
-        }
-    };
-    var conn = new mssql.ConnectionPool(config);
+    var conn = new mssql.ConnectionPool(
+        'server=34.29.94.142,1433;database=myshop;user id=sqlserver;password=nokia123;Trusted_Connection=True;TrustServerCertificate=True;');
 
     try{
         await conn.connect();
