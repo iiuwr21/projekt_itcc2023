@@ -60,6 +60,8 @@ async function createTable(){
     querry(sql); 
 }
 
+createTable();
+
 async function insert_product(name,description,imgLink,price){
     var sql = `INSERT INTO products (name, description, imgLink, price) VALUES ('${name}','${description}','${imgLink}','${price}')`;
     querry(sql); 
@@ -164,4 +166,4 @@ function result_select_users(){
 
 //export{update_product,update_user,delete_product_from_datebase,delete_product_from_datebase,insert_product,insert_user}
 module.exports = {insert_product,insert_user,update_user,update_product,delete_user_from_datebase,
-    delete_product_from_datebase,insert_order,select_products,select_users,pullProductsFromDB,pullUsersFromDB, createTable};
+    delete_product_from_datebase,insert_order,select_products,select_users,pullProductsFromDB,pullUsersFromDB};
