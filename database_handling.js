@@ -2,7 +2,7 @@ var mssql = require('mssql');
 //import * as mssql from 'mssql';
 
 conn = new mssql.ConnectionPool(
-    'server=34.29.94.142,1433;database=myshop;user id=sqlserver;password=nokia123;Trusted_Connection=True;TrustServerCertificate=True;');
+    'server=34.29.94.142,1433;database=myshop ;user id=sqlserver;password=nokia123;Trusted_Connection=True;TrustServerCertificate=True;');
 
 async function querry(sql){
     var conn = new mssql.ConnectionPool(
@@ -33,7 +33,7 @@ async function querry(sql){
 }
 
 async function createTable(){
-    var sql = `USE [itcc-shop]
+    var sql = `USE [myshop]
     GO
     
     /****** Object:  Table [dbo].[products]    Script Date: 31.01.2023 19:04:33 ******/
