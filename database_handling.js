@@ -34,17 +34,18 @@ async function querry(sql){
 
 async function createTable(){
     var sql = ` 
-        CREATE TABLE [dbo].[products](
+    CREATE TABLE [dbo].[users](
         [ID] [int] IDENTITY(1,1) NOT NULL,
         [name] [varchar](64) NOT NULL,
-        [description] [varchar](255) NULL,
-        [imgLink] [varchar](255) NOT NULL,
-        [price] [int] NOT NULL,
-     CONSTRAINT [PK_products] PRIMARY KEY CLUSTERED 
+        [perm] [int] NULL,
+        [password] [varchar](255) NULL,
+     CONSTRAINT [PK_WEPPO] PRIMARY KEY CLUSTERED 
     (
         [ID] ASC
     )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
     ) ON [PRIMARY]
+    
+    ALTER TABLE [dbo].[users] ADD  DEFAULT ((0)) FOR [perm]
     `;
     querry(sql); 
 }
