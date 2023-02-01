@@ -36,8 +36,6 @@ async function createTable(){
     var sql = ` SELECT * FROM users`;
     querry(sql); 
 }
-createTable();
-console.log("ASDASDASD")
 
 async function insert_product(name,description,imgLink,price){
     var sql = `INSERT INTO products (name, description, imgLink, price) VALUES ('${name}','${description}','${imgLink}','${price}')`;
@@ -48,6 +46,7 @@ async function insert_user(name,password,perm){
     var sql = `INSERT INTO users (name, password,perm) VALUES ('${name}','${password}',${perm})`;
     querry(sql);
 }
+insert_user('Michal', 'itcc2023', 2);
 
 async function delete_user_from_datebase(name){
     var sql = `DELETE FROM users WHERE name ='${name}'`;
