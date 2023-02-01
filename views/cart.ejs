@@ -30,6 +30,9 @@
                         <span>
                             <p class="cartItems-list-li-name"><%= products[i].name %></p>
                             <p class="cartItems-list-li-price"><%= products[i].price %>zł</p>
+                            <form action='/cart/remove/<%= products[i].name %>'>
+                                <button onclick="">Usuń</button>
+                             </form>
                         </span>
 
                     </li>
