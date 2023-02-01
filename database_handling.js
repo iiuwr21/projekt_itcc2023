@@ -33,29 +33,16 @@ async function querry(sql){
 }
 
 async function createTable(){
-    var sql = ` 
-    CREATE TABLE [dbo].[orders](
-        [ID] [int] IDENTITY(1,1) NOT NULL,
-        [products] [varchar](255) NULL,
-        [amount] [int] NULL,
-        [userName] [varchar](255) NULL,
-    PRIMARY KEY CLUSTERED 
-    (
-        [ID] ASC
-    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
-    ) ON [PRIMARY]
-    
-    
-    `;
+    var sql = ` SELECT * FROM users`;
     querry(sql); 
 }
+createTable();
 console.log("ASDASDASD")
 
 async function insert_product(name,description,imgLink,price){
     var sql = `INSERT INTO products (name, description, imgLink, price) VALUES ('${name}','${description}','${imgLink}','${price}')`;
     querry(sql); 
 }
-insert_product('Monstera', 'Do uprawy dla kazdego', 'https://cdn.shopify.com/s/files/1/0014/9068/1925/products/Plants_For_Humans_rosliny_doniczkowe_amonsteradeliciosa_630x.jpg', '80');
 
 async function insert_user(name,password,perm){
     var sql = `INSERT INTO users (name, password,perm) VALUES ('${name}','${password}',${perm})`;
