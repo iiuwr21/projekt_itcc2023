@@ -38,12 +38,23 @@
                         </div>
                     <% } %>
                 </span>
-                <!-- <form action="/add_user/" class="topnav-form" method="post">
+                <form action="/add_user" class="topnav-form" method="post">
                     <input class="topnav-searchinput" name="name" type="text" placeholder="Name" value="">
                     <input class="topnav-searchinput" name="password" type="text" placeholder="Password" value="">
                     <input class="topnav-searchinput" name="per" type="text" placeholder="Permission" value="">
-                </form> -->
-                
+                    <button onclick="">Dodaj Użytkownika</button>
+                </form>
+                <form action="/add_product" class="topnav-form" method="post">
+                    <input class="topnav-searchinput" name="name" type="text" placeholder="Name" value="">
+                    <input class="topnav-searchinput" name="description" type="text" placeholder="description" value="">
+                    <input class="topnav-searchinput" name="imgLink" type="text" placeholder="imgLink" value="">
+                    <input class="topnav-searchinput" name="price" type="number" placeholder="price" value="">
+                    <button onclick="">Dodaj Produkt</button>
+                </form>
+                <form action="/remove_product" class="topnav-form" method="post">
+                    <input class="topnav-searchinput" name="name" type="text" placeholder="Name" value="">
+                    <button onclick="">Usuń Produkt</button>
+                </form>
             </section>
     </main>
 </body>

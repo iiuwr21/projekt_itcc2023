@@ -9,6 +9,7 @@ var database_handling  = require('./database_handling');
 var app = express();
 
 const crypto = require('crypto');
+const { basename } = require('path');
 const secret = 'mysecretkey';
 const cipher = crypto.createCipher('aes256', secret);
 const decipher = crypto.createDecipher('aes256', secret);
@@ -20,8 +21,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser('sgs90890s8g90as8rg90as8g9r8a0srg8'));
 app.set('view engine', 'ejs');
 app.set('views', './views');
-
-
 
 //w definicji obslugi sciezki wrzucamy middlewhare authorize i jesli on przepusci zadanie to req.user bedzie wypelniony wartoscia
 //jednoczesnie authorize jest straznikiem i jesli nie przepusci żądania, to pójdziemy do endpointa końcowego - login   
@@ -79,6 +78,12 @@ app.get('/cart/add/:name', (req, res) => {
    res.redirect('/');
 });
 
+app.get('/cart/remove/:product', (req, res) => {
+    var newCart = req.cookies.cart.filter( e => req.params.product != e );
+    res.cookie('cart', newCart);
+    res.redirect('/cart');
+});
+
 app.get('/view_users/remove/:name', async (req,res) => {
     let usersT;
     try {
@@ -131,26 +136,23 @@ app.get('/logout', (req, res) => {
     res.redirect('/');
 });
 
-app.get('/view_users',authorize, (req, res) => {
-    //var answ = await database_handling.select_users();
-   // var value = []
-    //querry = database_handling.select_users();
-    //querry.recordset.forEach(r => {
-     //   value.push({'name': user.name,'password':user.password,'perm': user.perm});
-     //   console.log(value)
-    //})
-    var answ = async () =>{
-        return database_handling.select_users();
-    }
-    console.log(answ());
+app.get('/view_users',authorize, async (req, res) => {
+   
+    // var answ = async () =>{
+    //     return database_handling.select_users();
+    // }
+    //console.log(answ());
+
     var myTab = [];
-    //while(answ.recordset === undefined);
-    // answ.forEach(user => {
-    //     myTab.push({'name': user.name,'password':user.password,'perm': user.perm});
-    //     console.log(">>Pobieram uzytkownikow z bazy danych...")
-    // })
+
+    try { 
+        myTab = await database_handling.select_users();
+    } catch(e) {
+        console.error(e);
+        myTab = [];
+    }
     res.render('view_users', { users: myTab});
-    //res.render('view_users',{users: database_handling.pullUsersFromDB()});
+
 })
 
 
@@ -241,6 +243,29 @@ app.post('/cart', (req, res) => {
     
 });
 
+app.post('/add_user', (req, res) => {
+    var name = req.body.name;
+    var per = req.body.per;
+    var password = req.body.password
+    database_handling.insert_user(name,password,per);
+    res.redirect('/view_users')
+});
+
+app.post('/add_product', (req, res) => {
+    var name = req.body.name;
+    var description = req.body.description;
+    var imgLink = req.body.imgLink;
+    var price = req.body.price;
+    database_handling.insert_product(name,description,imgLink,price);
+    res.redirect('/view_users')
+});
+
+app.post('/remove_product', (req, res) => {
+    database_handling.delete_product_from_datebase(req.body.name)
+    res.redirect('/view_users')
+});
+
+
 http.createServer(app).listen(8080);
 console.log('serwer działa, nawiguj do http://localhost:8080');
 
@@ -260,7 +285,7 @@ async function checkpermission(username){
     return 1;
 }
 
-function authorize(req, res, next) {
+async function authorize(req, res, next) {
     if ( req.signedCookies.user ) {
         console.log(req.signedCookies.user) //nazwa uzytkownika
         if(req.url=="/admin"||"/view_users"){
@@ -269,12 +294,22 @@ function authorize(req, res, next) {
             //const decipher = crypto.createDecipher('aes256', secret);//var cipher = crypto.createCipher('aes-128-cbc','abcdefghijklmnop')
             let username = decipher.update(encryptedUsername, 'hex', 'utf8');
             username += decipher.final('utf8');
-            if(checkpermission(username)!=2)
-              res.redirect('/')
+
+            var perm = 1;
+            try {
+                perm = await checkpermission(username);
+            } catch (e) {
+                console.error(e);
+            }
+
+            if(perm!=2)
+               res.redirect('/')
         }
         next();
         } else {
             res.redirect(`/login?returnUrl=${req.url}`);
         }
-        }
+}
+
+
            
