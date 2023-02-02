@@ -36,9 +36,6 @@ async function insert_product(name,description,imgLink,price){
     var sql = `INSERT INTO products (name, description, imgLink, price) VALUES ('${name}','${description}','${imgLink}','${price}')`;
     querry(sql); 
 }
-insert_product('Bananowiec', 'Moga wyrosnac banany!', 'https://zielony-parapet.pl/23382-thickbox_default/musa-oriental-dwarf-.jpg', '60');
-insert_product('Bazylia', 'Pysznie wyglada i dobrze smakuje!', 'https://s3.eu-central-1.amazonaws.com/pressland-cms/cache/metatags_image/c3/17381089-odmiana-sweet.jpeg', '20');
-insert_product('Paproć', 'Paprocie doniczkowe mają największą wśród roślin pokojowych zdolność oczyszczania powietrza. Skutecznie pochłaniają toksyny.', 'https://poradnikogrodniczy.pl/pliki/plikiporady/paprocie-doniczkowe.webp', '40');
 
 async function insert_user(name,password,perm){
     var sql = `INSERT INTO users (name, password,perm) VALUES ('${name}','${password}',${perm})`;
