@@ -1,0 +1,59 @@
+body {
+    font-family: 'Lato';
+}
+
+.password {
+    background-color: black;
+    color: black;
+}
+
+h2 {
+    text-align: center;
+}
+
+.Users {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.user {
+    border: 1px solid green;
+    border-radius: 40px;
+    color: black;
+    display: inline-block;
+    flex-direction: row;
+    width: 20vw;
+    padding: 1vw;
+    margin: 1vw;
+}
+
+.user div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25vw;
+}
+
+.user button {
+    width: 10vw;
+}
+
+form input {
+    height: 2vw;
+}
+form button {
+    height: 3vw;
+    background: rgb(3, 121, 44);
+    color: white;
+    font-size: 1.25vw;
+    border: none;
+}
+
+form {
+    margin-left: 25px;
+    display: flex;
+    flex-direction: column;
+}

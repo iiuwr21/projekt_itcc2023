@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/topnav.css">
-
+    <link rel="stylesheet" href="/admin.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
@@ -22,13 +22,13 @@
                 <a class="active" href="/logout">Wyloguj</a>
             </div>
             </section>
-            <section>
-                <h2>Users</h2>
-                 <span class="Users">
+            <section class="mainAdmin">
+                <h2>Użytkownicy:</h2>
+                 <div class="Users">
                     <% for (var i=0;i<users.length;i++) { %>
-                        <div>
+                        <div class="user">
                             <div>
-                                 <p>Login: <%= users[i].name %>  Password: <%= users[i].password %> Permission: <%= users[i].perm %>
+                                 <p>Login: <%= users[i].name %> <br> Password: <span class="password"><%= users[i].password %> </span></span><br>Permission: <%= users[i].perm %>
                                  <form action='/view_users/remove/<%= users[i].name %>'>
                                     <button onclick="">Usuń</button>
                                  </form>
@@ -37,22 +37,28 @@
                             </div>
                         </div>
                     <% } %>
-                </span>
+                </div>
+                <h2>Panel Administratora</h2>
+                <h4>Dodawanie użytkowników</h4>
                 <form action="/add_user" class="topnav-form" method="post">
-                    <input class="topnav-searchinput" name="name" type="text" placeholder="Name" value="">
-                    <input class="topnav-searchinput" name="password" type="text" placeholder="Password" value="">
-                    <input class="topnav-searchinput" name="per" type="text" placeholder="Permission" value="">
+                    <input class="" name="name" type="text" placeholder="Name" value="">
+                    <input class="" name="password" type="text" placeholder="Password" value="">
+                    <input class="" name="per" type="text" placeholder="Permission" value="">
                     <button onclick="">Dodaj Użytkownika</button>
                 </form>
+
+                <h4>Dodawanie produktów</h4>
                 <form action="/add_product" class="topnav-form" method="post">
-                    <input class="topnav-searchinput" name="name" type="text" placeholder="Name" value="">
-                    <input class="topnav-searchinput" name="description" type="text" placeholder="description" value="">
-                    <input class="topnav-searchinput" name="imgLink" type="text" placeholder="imgLink" value="">
-                    <input class="topnav-searchinput" name="price" type="number" placeholder="price" value="">
+                    <input class="" name="name" type="text" placeholder="Name" value="">
+                    <input class="" name="description" type="text" placeholder="description" value="">
+                    <input class="" name="imgLink" type="text" placeholder="imgLink" value="">
+                    <input class="" name="price" type="number" placeholder="price" value="">
                     <button onclick="">Dodaj Produkt</button>
                 </form>
+
+                <h4>Usuwanie produktów</h4>
                 <form action="/remove_product" class="topnav-form" method="post">
-                    <input class="topnav-searchinput" name="name" type="text" placeholder="Name" value="">
+                    <input class="" name="name" type="text" placeholder="Name" value="">
                     <button onclick="">Usuń Produkt</button>
                 </form>
             </section>
